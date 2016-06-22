@@ -19,3 +19,90 @@ Where can you defined a variable :
 
 Launch test :
 ansible-playbook -i prod/ansible_hosts example.yml
+
+Result (ansible 2.0.2.0):
+
+```
+PLAY [all] *********************************************************************
+
+TASK [setup] *******************************************************************
+ok: [localhost]
+
+TASK [Who is the first priority variable ?] ************************************
+ok: [localhost] => {
+    "msg": "priority1 say = I am everywhere defined in vars.yml"
+}
+
+TASK [Who is the second priority variable ?] ***********************************
+ok: [localhost] => {
+    "msg": "priority2 say = I am everywhere defined with 'vars' in example.yml"
+}
+
+TASK [Who is the third priority variable ?] ************************************
+ok: [localhost] => {
+    "msg": "priority3 say = I am everywhere defined with 'vars' in included.yml"
+}
+
+TASK [Who is the 4th priority variable ?] **************************************
+ok: [localhost] => {
+    "msg": "priority4 say = I am everywhere defined in host_vars/localhost"
+}
+
+TASK [Who is the 5th priority variable ?] **************************************
+ok: [localhost] => {
+    "msg": "priority5 say = I am everywhere defined in prod/host_vars/localhost"
+}
+
+TASK [Who is the 6th priority variable ?] **************************************
+ok: [localhost] => {
+    "msg": "priority6 say = I am everywhere defined for localhost, a french production server in prod/ansible_hosts"
+}
+
+TASK [Who is the 7th priority variable ?] **************************************
+ok: [localhost] => {
+    "msg": "priority7 say = I am everywhere defined in groups_var/france"
+}
+
+TASK [Who is the 8th priority variable ?] **************************************
+ok: [localhost] => {
+    "msg": "priority8 say = I am everywhere defined in prod/groups_var/france"
+}
+
+TASK [Who is the 9th priority variable ?] **************************************
+ok: [localhost] => {
+    "msg": "priority9 say = I am everywhere defined in groups_var/europe"
+}
+
+TASK [Who is the 10th priority variable ?] *************************************
+ok: [localhost] => {
+    "msg": "priority10 say = I am everywhere defined in prod/groups_var/europe"
+}
+
+TASK [Who is the 11th priority variable ?] *************************************
+ok: [localhost] => {
+    "msg": "priority11 say = I am everywhere defined in groups_var/all"
+}
+
+TASK [Who is the 12th priority variable ?] *************************************
+ok: [localhost] => {
+    "msg": "priority12 say = I am everywhere defined in prod/groups_var/all"
+}
+
+TASK [Who is the 13th priority variable ?] *************************************
+ok: [localhost] => {
+    "msg": "priority13 say = I am everywhere defined for a french server production in prod/ansible_hosts"
+}
+
+TASK [Who is the 14th priority variable ?] *************************************
+ok: [localhost] => {
+    "msg": "priority14 say = I am everywhere defined for a european server production in prod/ansible_hosts"
+}
+
+TASK [Who is the 15th priority variable ?] *************************************
+ok: [localhost] => {
+    "msg": "priority15 say = I am everywhere defined for a server production in prod/ansible_hosts"
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=16   changed=0    unreachable=0    failed=0   
+```
